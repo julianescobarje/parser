@@ -10,28 +10,8 @@ class Lexer:
         self.program = None
         self.readProgram()
 
-    def specialReplace(self, string: str) -> str:
-        start = 0
-        while start < len(string):
-            pos = string.find('MOVE', start)
-            if pos == -1:
-                break
-            word_end = pos + 4
-            if string[pos+4:pos+9] == 'INDIR' or string[pos+4:pos+9] == 'TOTHE':
-                word_end += 5
-            if string[pos-3:pos] == 'CAN':
-                pos -= 3
-            string = string[:pos] + ' ' + \
-                string[pos:word_end] + ' ' + string[word_end:]
-            start = word_end + 2
-        return string
-
     def cleanProgram(self, program: str) -> list:
         program = program.upper()
-        program = self.specialReplace(program)
-        for word in reserved_words:
-            if word not in special_reserved_words:
-                program = program.replace(word, f' {word} ')
         for character in characters:
             program = program.replace(character, f' {character} ')
         program = program.replace('\t', ' ').replace('\n', ' ').strip()
