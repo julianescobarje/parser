@@ -1,4 +1,4 @@
-from lexer_overkill import Lexer
+from lexer import Lexer
 
 
 def tokenize(program):
