@@ -32,6 +32,7 @@ class Verifier:
 
         i = 0
         while i < len(tokens) - 2:
+
             if tokens[i].getType() != 'STRING':
                 return False
 
@@ -53,22 +54,24 @@ class Verifier:
                 return False
             i += 1
 
-            while i < len(tokens) - 1:
-                token = tokens[i]
-                next_token_type = tokens[i+1].getType()
-                if token.getType() != 'STRING' or next_token_type not in ['COMMA', 'PIPE']:
-                    return False
-                if next_token_type == 'PIPE':
-                    break
-                i += 2
+            if tokens[i].getType() != 'PIPE':
+                while i < len(tokens) - 1:
+                    token = tokens[i]
+                    next_token_type = tokens[i+1].getType()
+                    if token.getType() != 'STRING' or next_token_type not in ['COMMA', 'PIPE']:
+                        return False
+                    if next_token_type == 'PIPE':
+                        break
+                    i += 2
 
-            if not self.verifyIncrease(i, len(tokens), 2):
-                return False
-            i += 2
+                if not self.verifyIncrease(i, len(tokens), 2):
+                    return False
+                i += 2
+            else:
+                i += 1
 
             while i < len(tokens) - 1:
                 command = tokens[i].getType()
-                print('command:', command)
 
                 if command not in reserved_words:
                     return False
@@ -90,12 +93,10 @@ class Verifier:
 
                     while i < len(tokens) - 1:
                         token = tokens[i]
-                        token_type = token.getType()
-                        token_value = token.getValue()
                         next_token_type = tokens[i+1].getType()
-                        if next_token_type not in ['COMMA', 'SEMICOLON']:
+                        if next_token_type not in ['COMMA', 'SEMICOLON', 'RKEY']:
                             return False
-                        if next_token_type == 'SEMICOLON':
+                        if next_token_type in ['SEMICOLON', 'RKEY']:
                             params_command.append(token)
                             break
                         params_command.append(token)
@@ -138,20 +139,25 @@ class Verifier:
 
                         if not found:
                             return False
-
-                if next_token_type != 'SEMICOLON':
+                elif command in control_structures:
+                    print('command:', command)
+                else:
                     return False
 
-                i += 2
+                if next_token_type not in ['SEMICOLON', 'RKEY']:
+                    return False
+
+                i += 1
 
                 if tokens[i].getType() == 'RKEY':
                     break
+                elif tokens[i].getType() == 'SEMICOLON':
+                    i += 1
 
             if tokens[i].getType() != 'RKEY':
                 return False
 
             i += 1
-            print('i3', i)
 
         return True
 

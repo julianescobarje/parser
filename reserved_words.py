@@ -68,3 +68,9 @@ commands = {
     'JUMPINDIR': [['VARIABLE', 'INT', 'FLOAT'], ['NORTH', 'SOUTH', 'EAST', 'WEST']],
     'NOP': None
 }
+
+control_structures = {
+    'IF': ['IF', 'CONDITION', 'THEN', 'BLOCK', 'ELSE', 'BLOCK'],
+    'WHILE': ['WHILE', 'CONDITION', 'DO', 'BLOCK'],
+    'REPEAT': ['REPEAT', ['VARIABLE', 'INT', 'FLOAT'], 'BLOCK']
+}
