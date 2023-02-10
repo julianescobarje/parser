@@ -10,3 +10,6 @@ class Token:
 
     def getType(self) -> str:
         return self.type
+
+    def getValue(self) -> str:
+        return self.value

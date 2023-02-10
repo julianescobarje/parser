@@ -42,13 +42,29 @@ reserved_words = ['ROBOT_R',
                   'FRONT',
                   'BACK',
                   'RIGHT',
-                  'LEFT']
+                  'LEFT',
+                  'AROUND']
 
 characters = {
-    '|': Token('LINE', ''),
+    '|': Token('PIPE', ''),
     '[': Token('LKEY', ''),
     ']': Token('RKEY', ''),
     ';': Token('SEMICOLON', ''),
     ':': Token('COLON', ''),
     ',': Token('COMMA', ''),
+}
+
+commands = {
+    'ASSIGNTO': [['INT', 'FLOAT'], 'VARIABLE'],
+    'GOTO': [['VARIABLE', 'INT', 'FLOAT'], ['VARIABLE', 'INT', 'FLOAT']],
+    'MOVE': [['VARIABLE', 'INT', 'FLOAT']],
+    'TURN': [['LEFT', 'RIGHT', 'AROUND']],
+    'FACE': [['NORTH', 'SOUTH', 'EAST', 'WEST']],
+    'PUT': [['VARIABLE', 'INT', 'FLOAT'], ['BALLOONS', 'CHIPS']],
+    'PICK': [['VARIABLE', 'INT', 'FLOAT'], ['BALLOONS', 'CHIPS']],
+    'MOVETOTHE': [['VARIABLE', 'INT', 'FLOAT'], ['FRONT', 'RIGHT', 'LEFT', 'BACK']],
+    'MOVEINDIR': [['VARIABLE', 'INT', 'FLOAT'], ['NORTH', 'SOUTH', 'EAST', 'WEST']],
+    'JUMPTOTHE': [['VARIABLE', 'INT', 'FLOAT'], ['FRONT', 'RIGHT', 'LEFT', 'BACK']],
+    'JUMPINDIR': [['VARIABLE', 'INT', 'FLOAT'], ['NORTH', 'SOUTH', 'EAST', 'WEST']],
+    'NOP': None
 }
