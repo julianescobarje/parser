@@ -1,9 +1,5 @@
 from tokenizer import Token
 
-special_reserved_words = [
-    'MOVE', 'MOVETOTHE', 'MOVEINDIR', 'CANMOVEINDIR', 'CANMOVETOTHE'
-]
-
 reserved_words = ['ROBOT_R',
                   'VARS',
                   'PROCS',
@@ -70,7 +66,19 @@ commands = {
 }
 
 control_structures = {
-    'IF': ['IF', 'CONDITION', 'THEN', 'BLOCK', 'ELSE', 'BLOCK'],
-    'WHILE': ['WHILE', 'CONDITION', 'DO', 'BLOCK'],
-    'REPEAT': ['REPEAT', ['VARIABLE', 'INT', 'FLOAT'], 'BLOCK']
+    'IF': ['CONDITION', 'THEN', 'COLON', 'BLOCK', 'ELSE', 'COLON', 'BLOCK'],
+    'WHILE': ['CONDITION', 'DO', 'COLON', 'BLOCK'],
+    'REPEAT': [['VARIABLE', 'INT', 'FLOAT'], 'BLOCK']
+}
+
+conditions = {
+    'FACING': [['NORTH', 'SOUTH', 'EAST', 'WEST']],
+    'CANPUT': [['VARIABLE', 'INT', 'FLOAT'], ['CHIPS', 'BALLOONS']],
+    'CANPICK': [['VARIABLE', 'INT', 'FLOAT'], ['CHIPS', 'BALLOONS']],
+    'CANMOVEINDIR': [['VARIABLE', 'INT', 'FLOAT'], ['NORTH', 'SOUTH', 'EAST', 'WEST']],
+    'CANJUMPINDIR': [['VARIABLE', 'INT', 'FLOAT'], ['NORTH', 'SOUTH', 'EAST', 'WEST']],
+    'CANJUMPINDIR': [['VARIABLE', 'INT', 'FLOAT'], ['NORTH', 'SOUTH', 'EAST', 'WEST']],
+    'CANMOVETOTHE': [['VARIABLE', 'INT', 'FLOAT'], ['FRONT', 'RIGHT', 'LEFT', 'BACK']],
+    'CANJUMPTOTHE': [['VARIABLE', 'INT', 'FLOAT'], ['FRONT', 'RIGHT', 'LEFT', 'BACK']],
+    'NOT': ['CONDITION']
 }

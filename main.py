@@ -14,7 +14,6 @@ def main():
         return
 
     tokens = lexer.tokenize()
-    print(tokens)
 
     verifier = Verifier(tokens)
     result = verifier.verifySyntax() if tokens else False

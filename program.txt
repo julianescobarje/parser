@@ -5,7 +5,7 @@ putCB [ |c , b| assignTo: 1, one;
 put : c, chips; put: b, balloons ]
 
 goNorth [| |
-while : canMovetoThe : 1 , north do: [ moveInDir : 1 , north ]
+while : canMovetoThe : 1 , front do: [ moveInDir : 1 , north ]
 ]
 
 
